@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         const works = Array.isArray(workData?.courseWork) ? workData.courseWork : []
 
         // Filtrar tareas creadas en las últimas 24h
-        const newTasks = works.filter(work => {
+        const newTasks = works.filter((work: any) => {
           const creationTime = work?.creationTime ? new Date(work.creationTime).getTime() : 0
           return creationTime >= last24h
         })
@@ -80,12 +80,12 @@ export async function POST(request: NextRequest) {
         const students = Array.isArray(studentsData?.students) ? studentsData.students : []
 
         // Preparar lista de destinatarios (estudiantes) - SOLO EMAIL por ahora
-        const recipients = students.map(student => ({
+        const recipients = students.map((student: any) => ({
           email: student.profile?.emailAddress || '',
           phone: undefined, // Deshabilitado: requiere cuenta paga de Twilio
           name: student.profile?.name?.fullName || 'Estudiante',
           role: 'student' as const
-        })).filter(r => r.email) // Solo estudiantes con email
+        })).filter((r: any) => r.email) // Solo estudiantes con email
 
         // Enviar notificaciones por cada tarea nueva
         for (const task of newTasks) {
