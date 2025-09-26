@@ -231,13 +231,13 @@ export default function StudentProgress() {
       if (s.status === 'ontime') row.onTime += 1
     }
     // compute status bucket by completion %
-    for (const row of map.values()) {
+    Array.from(map.values()).forEach(row => {
       const pct = row.total ? Math.round((row.completed / row.total) * 100) : 0
       if (pct >= 85) row.status = 'excelente'
       else if (pct >= 70) row.status = 'bueno'
       else if (pct >= 50) row.status = 'requiere-atención'
       else row.status = 'en-riesgo'
-    }
+    })
     return Array.from(map.values())
   }, [submissionsAgg])
 
