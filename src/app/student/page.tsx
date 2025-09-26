@@ -105,8 +105,8 @@ export default function StudentHome() {
                 let mySubmission = null
                 if (currentUserEmail) {
                   // Primero intentar por email si está disponible en el profile
-                  mySubmission = submissions.find(sub => 
-                    sub.userId && sub.userId === session?.user?.id ||
+                  mySubmission = submissions.find((sub: any) => 
+                    sub.userId && sub.userId === (session?.user as any)?.id ||
                     (sub.profile?.emailAddress && sub.profile.emailAddress.toLowerCase() === currentUserEmail.toLowerCase())
                   )
                 }
