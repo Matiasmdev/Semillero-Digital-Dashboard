@@ -30,7 +30,7 @@ export async function sendEmailNotification(notification: EmailNotification) {
     return { success: true, id: result.data?.id }
   } catch (error) {
     console.error('Error sending email:', error)
-    return { success: false, error: error.message }
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
   }
 }
 

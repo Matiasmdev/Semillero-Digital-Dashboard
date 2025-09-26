@@ -74,7 +74,7 @@ export async function notifyNewTask(
         recipient: recipient.email,
         type: 'error',
         success: false,
-        error: error.message
+        error: error instanceof Error ? error.message : 'Unknown error'
       })
     }
   }

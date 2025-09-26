@@ -27,7 +27,7 @@ export default function NotificationTester() {
       setResult({
         success: false,
         message: 'Error de conexión',
-        error: error.message
+        error: error instanceof Error ? error.message : 'Unknown error'
       })
     } finally {
       setLoading(false)
